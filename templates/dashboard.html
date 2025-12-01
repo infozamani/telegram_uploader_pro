@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}داشبورد{% endblock %}
+
+{% block content %}
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card text-center p-4">
+            <h4>پست معمولی</h4>
+            <p>عکس، ویدیو یا فایل + کپشن هوش مصنوعی</p>
+            <a href="{% url 'upload_post' %}" class="btn btn-success btn-lg">ساخت پست جدید</a>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card text-center p-4">
+            <h4>محصول فروشگاه</h4>
+            <p>نام، قیمت، تخفیف + کپشن لوکس</p>
+            <a href="{% url 'upload_product' %}" class="btn btn-warning btn-lg text-white">ساخت محصول جدید</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

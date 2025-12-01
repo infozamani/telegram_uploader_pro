@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}ساخت پست جدید{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card mt-4">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">ساخت پست معمولی (عکس/ویدیو/فایل)</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label class="form-label">فایل (عکس، ویدیو یا سند)</label>
+                        <input type="file" name="media_file" class="form-control" accept="image/*,video/*,.pdf,.docx" required>
+                    </div>
+
+                    <div class="text-center mb-3">
+                        <img id="preview" src="" class="img-fluid rounded" style="max-height: 400px; display: none;">
+                        <video id="video_preview" controls class="img-fluid rounded" style="max-height: 400px; display: none;"></video>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input type="checkbox" name="use_ai_caption" class="form-check-input" id="ai_check" checked>
+                        <label class="form-check-label" for="ai_check">
+                            کپشن را هوش مصنوعی بنویسد؟ (توصیه می‌شود)
+                        </label>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">کپشن دستی (اختیاری)</label>
+                        <textarea name="caption" class="form-control" rows="4" placeholder="اگر نمی‌خوای هوش مصنوعی بنویسه، اینجا بنویس..."></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">هشتگ‌ها</label>
+                        <input type="text" name="hashtags" class="form-control" placeholder="#عکس #زیبا #طبیعت">
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success btn-lg">ارسال به کانال</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.querySelector('[name="media_file"]').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    const preview = document.getElementById('preview');
+    const video = document.getElementById('video_preview');
+    preview.style.display = 'none';
+    video.style.display = 'none';
+    
+    if (file && file.type.startsWith('image/')) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = 'block';
+    } else if (file && file.type.startsWith('video/')) {
+        video.src = URL.createObjectURL(file);
+        video.style.display = 'block';
+    }
+});
+</script>
+{% endblock %}

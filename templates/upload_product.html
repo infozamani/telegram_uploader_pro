@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %}ساخت محصول جدید{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card mt-4">
+            <div class="card-header bg-warning text-dark">
+                <h4 class="mb-0">ساخت محصول فروشگاه</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" action="{% url 'preview_product' %}">
+                    {% csrf_token %}
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label>شماره محصول</label>
+                            <input type="text" name="product_code" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>نام محصول</label>
+                            <input type="text" name="name" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>برند</label>
+                        <input type="text" name="brand" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>عکس محصول</label>
+                        <input type="file" name="media_file" class="form-control" accept="image/*" required>
+                        <div class="text-center mt-3">
+                            <img id="product_preview" src="" class="img-fluid rounded" style="max-height: 350px; display: none;">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label>قیمت اصلی (تومان)</label>
+                            <input type="number" name="original_price" class="form-control" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>درصد تخفیف</label>
+                            <input type="number" name="discount_percent" class="form-control" min="0" max="99" value="0">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>موجودی</label>
+                            <select name="in_stock" class="form-select">
+                                <option value="1">دارد</option>
+                                <option value="0">ناموجود</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>زمان ارسال</label>
+                        <input type="text" name="delivery_days" class="form-control" value="۳ تا ۵ روز کاری">
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input type="checkbox" name="use_ai_caption" class="form-check-input" id="ai_product" checked>
+                        <label class="form-check-label" for="ai_product">
+                            کپشن لوکس را هوش مصنوعی بنویسد؟
+                        </label>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-warning btn-lg text-white">ارسال محصول به کانال</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.querySelector('[name="media_file"]').addEventListener('change', function(e) {
+    if (e.target.files[0]) {
+        document.getElementById('product_preview').src = URL.createObjectURL(e.target.files[0]);
+        document.getElementById('product_preview').style.display = 'block';
+    }
+});
+</script>
+{% endblock %}

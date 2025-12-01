@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}پیش‌نمایش پست{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-4">
+    <div class="col-lg-7">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white text-center">
+                <h4>پیش‌نمایش پست در کانال</h4>
+            </div>
+            <div class="card-body text-center p-4">
+
+                {% if media_type == 'image' %}
+                    <img src="{{ media_url }}" class="img-fluid rounded mb-4" style="max-height: 500px;">
+                {% elif media_type == 'video' %}
+                    <video controls class="img-fluid rounded mb-4" style="max-height:500px;">
+                        <source src="{{ media_url }}" type="video/mp4">
+                    </video>
+                {% else %}
+                    <div class="bg-light border p-5 rounded mb-4">
+                        <h5>فایل: {{ filename }}</h5>
+                    </div>
+                {% endif %}
+
+                <div class="text-end p-3 bg-light rounded" style="white-space: pre-wrap; font-size:1.1rem;">
+                    {{ caption|safe }}
+                </div>
+
+                <div class="mt-4">
+                    <form method="post" action=" ">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{ post_id }}">
+                        <button type="submit" class="btn btn-success btn-lg px-5">تأیید و ارسال به کانال</button>
+                        <a href="{% url 'upload_post' %}" class="btn btn-secondary btn-lg px-5">ویرایش مجدد</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
