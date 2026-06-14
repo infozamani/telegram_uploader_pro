@@ -1,3 +1,8 @@
+
+<img width="1872" height="592" alt="dashboard" src="https://github.com/user-attachments/assets/1877d5b4-6853-45bc-93e4-f9ce261c60c7" />
+<img width="1859" height="900" alt="make product" src="https://github.com/user-attachments/assets/ffe5461b-87fa-45fa-b2b4-a3eb4876c644" />
+<img width="1653" height="890" alt="uplode" src="https://github.com/user-attachments/assets/501a44ae-d4dd-4dd3-8028-bc214604f91a" />
+
 🇬🇧 <span id="en">English Version</span>
 📌 Project Overview
 Telegram Uploader Pro is a web application built with Django that enables you to:
