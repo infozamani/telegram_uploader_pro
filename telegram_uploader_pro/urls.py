@@ -7,20 +7,18 @@ from django.contrib.auth import views as auth_views
 from uploader import views as uploader_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    
-    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    
-    path('dashboard/', uploader_views.dashboard, name='dashboard'),
-    
+    path("admin/", admin.site.urls),
+    path(
+        "login/", auth_views.LoginView.as_view(template_name="login.html"), name="login"
+    ),
+    path("logout/", auth_views.LogoutView.as_view(), name="logout"),
+    path("dashboard/", uploader_views.dashboard, name="dashboard"),
     # فرم‌ها
-    path('upload-post/', uploader_views.upload_post, name='upload_post'),
-    path('upload-product/', uploader_views.upload_product, name='upload_product'),
-    
+    path("upload-post/", uploader_views.upload_post, name="upload_post"),
+    path("upload-product/", uploader_views.upload_product, name="upload_product"),
     # پیش‌نمایش و تأیید محصول — اینا حتماً باید باشن!
-    path('preview-product/', uploader_views.preview_product, name='preview_product'),
-    path('confirm-product/', uploader_views.confirm_product, name='confirm_product'),
+    path("preview-product/", uploader_views.preview_product, name="preview_product"),
+    path("confirm-product/", uploader_views.confirm_product, name="confirm_product"),
 ]
 
 # برای نمایش عکس‌های موقت (temp)

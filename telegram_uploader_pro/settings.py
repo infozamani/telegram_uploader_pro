@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-
 import os
 from pathlib import Path
 from dotenv import load_dotenv
@@ -45,7 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "uploader"
+    "uploader",
 ]
 
 MIDDLEWARE = [
@@ -63,7 +62,7 @@ ROOT_URLCONF = "telegram_uploader_pro.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        'DIRS': [BASE_DIR / 'templates'],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -112,14 +111,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
- 
-LANGUAGE_CODE = 'fa-ir'
 
- 
-TIME_ZONE = 'Asia/Tehran'
+LANGUAGE_CODE = "fa-ir"
 
- 
- 
+
+TIME_ZONE = "Asia/Tehran"
+
+
 USE_TZ = True
 USE_I18N = True
 
@@ -145,7 +143,7 @@ load_dotenv()  # ← این خط خیلی مهمه! باید اینجا باشه
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # حالا بقیه تنظیمات...
-SECRET_KEY = 'django-insecure-...'
+SECRET_KEY = "django-insecure-..."
 DEBUG = True
 ALLOWED_HOSTS = []
 
@@ -159,19 +157,19 @@ CHANNEL_ID = os.getenv("CHANNEL_ID")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 # به جای STATIC_ROOT و STATIC_URL قبلی
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # اضافه کن این دو خط
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # برای عکس‌ها (media)
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
-LOGIN_REDIRECT_URL = '/dashboard/'   # بعد از لاگین بره داشبورد
-LOGOUT_REDIRECT_URL = '/login/'
+LOGIN_REDIRECT_URL = "/dashboard/"  # بعد از لاگین بره داشبورد
+LOGOUT_REDIRECT_URL = "/login/"
